@@ -1,7 +1,18 @@
 mt-plugin-DataAPIExtendSearch
 =============================
 
+## Overview
+
 You can filter entries by tag, category and date.
+
+## Prerequisites
+
+* Movable Type 6.0 or higher
+
+## Installation
+
+1. Unpack the DataAPIExtendSearch's archive.
+1. Copy the contents of plugins/DataAPIExtendSearch into /path/to/mt/plugins/
 
 ## Tag filter
 
