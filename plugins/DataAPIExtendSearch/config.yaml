@@ -1,12 +1,12 @@
 # Data API Extend Search
 #
-# Release 0.01 (2013-11-28)
+# Release 0.02 (2013-12-21)
 #
 # Copyright (c) bit part LLC. / Powered by mt-plug.in
 name: Data API Extend Search
 id: DataAPIExtendSearch
 key: dataapiextendsearch
-version: 0.01
+version: 0.02
 author_name: <__trans phrase="bit part LLC">
 author_link: http://bit-part.net/
 description: <__trans phrase="Data API の検索を拡張します。">

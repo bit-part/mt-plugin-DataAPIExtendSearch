@@ -88,7 +88,7 @@ sub data_api_pre_load_filtered_list_entry {
       }
     }
   }
-  for my $key (qw(tag category)) {
+  for my $key (qw(tag category author_name)) {
     if (my $value = $app->param($key)) {
       $filter->append_item({
         'type' => $key,
