@@ -99,3 +99,11 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 e.g.)
 http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&past=1
 
+## Author Name filter
+
+| Parameter | Type | Description |
+|:--|:--|:--|
+| author_name | string |  |
+
+e.g.)
+http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?author_name=bitpart
