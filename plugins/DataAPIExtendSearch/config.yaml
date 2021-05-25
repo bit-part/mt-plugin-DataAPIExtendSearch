@@ -1,15 +1,14 @@
 # Data API Extend Search
 #
-# Release 0.02 (2013-12-21)
-#
-# Copyright (c) bit part LLC. / Powered by mt-plug.in
+# Copyright (c) bit part LLC. - http://bit-part.net/
 name: Data API Extend Search
 id: DataAPIExtendSearch
-key: dataapiextendsearch
-version: 0.02
-author_name: <__trans phrase="bit part LLC">
+version: 1.1.0
+author_name: '<__trans phrase="bit part LLC">'
 author_link: http://bit-part.net/
-description: <__trans phrase="Data API の検索を拡張します。">
+description: '<__trans phrase="Add filters by Tag, Category and Date to Data API Endpoint of Entries.">'
+plugin_link: https://github.com/bit-part/mt-plugin-DataAPIExtendSearch
+doc_link: https://github.com/bit-part/mt-plugin-DataAPIExtendSearch/blob/master/README.md
 l10n_class: DataAPIExtendSearch::L10N
 callbacks:
     data_api_pre_load_filtered_list.entry: $DataAPIExtendSearch::DataAPIExtendSearch::Callbacks::data_api_pre_load_filtered_list_entry

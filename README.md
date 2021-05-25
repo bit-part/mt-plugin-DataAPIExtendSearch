@@ -3,7 +3,7 @@ mt-plugin-DataAPIExtendSearch
 
 ## Overview
 
-You can filter entries by tag, category and date.
+Add filters by Tag, Category and Date to Data API Endpoint of Entries.
 
 ## Prerequisites
 
