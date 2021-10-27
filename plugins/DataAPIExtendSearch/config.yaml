@@ -3,10 +3,10 @@
 # Copyright (c) bit part LLC. - http://bit-part.net/
 name: Data API Extend Search
 id: DataAPIExtendSearch
-version: 1.1.0
+version: 1.2.0
 author_name: '<__trans phrase="bit part LLC">'
 author_link: http://bit-part.net/
-description: '<__trans phrase="Add filters by Tag, Category and Date to Data API Endpoint of Entries.">'
+description: '<__trans phrase="This plugin gives some additional filters to retrieve a list of content data or entries via Data API.">'
 plugin_link: https://github.com/bit-part/mt-plugin-DataAPIExtendSearch
 doc_link: https://github.com/bit-part/mt-plugin-DataAPIExtendSearch/blob/master/README.md
 l10n_class: DataAPIExtendSearch::L10N
