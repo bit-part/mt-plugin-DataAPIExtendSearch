@@ -188,6 +188,24 @@ sub data_api_pre_load_filtered_list_content_data {
             }
         }
     }
+
+    my ( $site, $content_type ) = MT::DataAPI::Endpoint::Common::context_objects($app, $app->current_endpoint);
+    my %params = $app->param_hash;
+    foreach my $key (keys(%params)){
+        if ($key =~ /^content_field_/) {
+            if ($params{$key} ne '') {
+                $filter->object_ds('content_data.content_data_' . $content_type->id);
+                $filter->append_item({
+                    'type' => $key,
+                    'args' => {
+                        'string' => $params{$key},
+                        'option' => 'contains',
+                    }
+                });
+            }
+        }
+    }
+
 }
 
 1;
