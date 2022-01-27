@@ -204,6 +204,38 @@ sub data_api_pre_load_filtered_list_content_data {
                 });
             }
         }
+        elsif ($key eq 'label') {
+            my $data_label_field_id;
+            my $type;
+            my $data_label_field_uid = $content_type->data_label;
+            if ($data_label_field_uid) {
+                my $content_fields = $content_type->fields;
+                for my $field (@{$content_fields}) {
+                    if ($data_label_field_uid eq $field->{unique_id}) {
+                        $data_label_field_id = $field->{id};
+                        last;
+                    }
+                }
+                $type = 'content_field_' . $data_label_field_id;
+                $filter->object_ds('content_data.content_data_' . $content_type->id);
+            }
+            $filter->append_item({
+                'type' => $type ? $type : $key,
+                'args' => {
+                    'string' => $params{$key},
+                    'option' => 'contains',
+                }
+            });
+        }
+        elsif ($key eq 'identifier') {
+            $filter->append_item({
+                'type' => $key,
+                'args' => {
+                    'string' => $params{$key},
+                    'option' => 'contains',
+                }
+            });
+        }
     }
 
 }

@@ -3,30 +3,30 @@ mt-plugin-DataAPIExtendSearch
 
 ## Overview
 
-Add filters by Tag, Category and Date to Data API Endpoint of Entries.
+Add filters by Tag, Category and Date to Data API Endpoint of Entries and Content Data.
 
 ## Prerequisites
 
-* Movable Type 6.0 or higher
+* Movable Type 7
 
 ## Installation
 
 1. Unpack the DataAPIExtendSearch's archive.
 1. Copy the contents of plugins/DataAPIExtendSearch into /path/to/mt/plugins/
 
-## Tag filter
+## Tag filter (Only for Entries)
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | tag | string |  |
 
 e.g.)
 http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?tag=news
 
-## Category filter
+## Category filter (Only for Entries)
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | category | string |  |
 
 e.g.)
@@ -35,13 +35,13 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?category=technology
 ## Date filter
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on, created_on, modified_on or unpublished_on |
 
 ###  Range
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on, created_on, modified_on or unpublished_on |
 | from | string | YYYY-MM-DD |
 | to | string | YYYY-MM-DD |
@@ -52,7 +52,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 ###  Days
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on, created_on, modified_on or unpublished_on |
 | days | number | N |
 
@@ -62,7 +62,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 ###  Before
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on, created_on, modified_on or unpublished_on |
 | before | string | YYYY-MM-DD |
 
@@ -72,7 +72,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 ###  After
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on, created_on, modified_on or unpublished_on |
 | after | string | YYYY-MM-DD |
 
@@ -82,7 +82,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 ###  Future
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on |
 | future | number | '1' only |
 
@@ -92,18 +92,41 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 ###  Past
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | date_type | string |  authored_on |
 | past | number | '1' only |
 
 e.g.)
+http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&past=1  
 http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&past=1
 
-## Author Name filter
+## Author Name filter (Only for Entries)
 
 | Parameter | Type | Description |
-|:--|:--|:--|
+|---|---|---|
 | author_name | string |  |
 
 e.g.)
 http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?author_name=bitpart
+
+## Label filter (Only for Content Data)
+
+Note: Label means "Data Label".
+
+| Parameter | Type | Description |
+|---|---|---|
+| label | string |  |
+
+e.g.)
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/content?label=bitpart
+
+## Identifier filter (Only for Content Data)
+
+Note: Identifier is called "Basename" in Entry.
+
+| Parameter | Type | Description | 
+|---|---|---| 
+| label | string |  | 
+
+e.g.)
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/content?identifier=bitpart
