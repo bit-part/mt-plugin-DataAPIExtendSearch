@@ -3,7 +3,7 @@
 # Copyright (c) bit part LLC. - http://bit-part.net/
 name: Data API Extend Search
 id: DataAPIExtendSearch
-version: 1.3.0
+version: 1.4.0
 author_name: '<__trans phrase="bit part LLC">'
 author_link: http://bit-part.net/
 description: '<__trans phrase="This plugin gives some additional filters to retrieve a list of content data or entries via Data API.">'
