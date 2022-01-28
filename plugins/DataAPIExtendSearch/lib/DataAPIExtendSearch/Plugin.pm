@@ -50,6 +50,7 @@ sub data_api_content_data_extend {
                 },
             }
         );
+        push @{ $args{joins} }, $join;
     }
 
     my @items = MT->model('content_data')->load( \%terms, \%args );
