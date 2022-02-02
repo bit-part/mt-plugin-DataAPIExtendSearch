@@ -53,6 +53,11 @@ sub data_api_content_data_extend {
         push @{ $args{joins} }, $join;
     }
 
+    # Login Check
+    if (!$app->user->id) {
+        $terms{status} = MT::ContentStatus::RELEASE();
+    }
+
     my @items = MT->model('content_data')->load( \%terms, \%args );
     my $count = MT->model('content_data')->count( \%terms );
 
