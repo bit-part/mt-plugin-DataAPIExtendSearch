@@ -54,13 +54,61 @@ sub data_api_content_data_extend {
         push @{ $args{joins} }, $join;
     }
 
+    # Filter by a content field
+    my %params = $app->param_hash;
+    foreach my $key ( keys(%params) ) {
+        if ( $key =~ /^content_field_/ ) {
+            my ($cf_id_filter) = $key =~ m/^content_field_(\d+)/i;
+            my $cf_filter = MT->model('cf')->load(
+                {   blog_id         => $blog_id,
+                    content_type_id => $content_type_id,
+                    id              => $cf_id_filter
+                }
+            );
+            if ($cf_filter) {
+                my $data_type = MT->registry('content_field_types')->{ $cf_filter->type }{data_type};
+                my $value;
+                if ( $data_type eq 'text' ) {
+                    $value = $app->param($key) || '';
+                    $value = '%' . $value . '%';
+                    my $join = MT->model('cf_idx')->join_on(
+                        'content_data_id',
+                        {   content_field_id      => $cf_filter->id,
+                            'value_' . $data_type => { like => $value },
+                        },
+                        { alias => 'cf_idx_' . $cf_filter->id }
+                    );
+                    push @{ $args{joins} }, $join;
+                }
+            }
+        }
+    }
+
+    # includeIds
+    my $include_ids = $app->param('includeIds') || '';
+    if ($include_ids) {
+        $include_ids =~ s/\s*//gi;
+        my @ids = split( /,/, $include_ids );
+        $terms{id} = \@ids;
+    }
+
+    # excludeIds
+    my $exclude_ids = $app->param('excludeIds') || '';
+    if ($exclude_ids) {
+        $exclude_ids =~ s/\s*//gi;
+        my @ids = split( /,/, $exclude_ids );
+        $terms{id} = { not => \@ids };
+    }
+
     # Login Check
     if ( !$app->user->id ) {
         $terms{status} = MT::ContentStatus::RELEASE();
     }
 
     my @items = MT->model('content_data')->load( \%terms, \%args );
-    my $count = MT->model('content_data')->count( \%terms );
+    $args{limit}  = undef;
+    $args{offset} = undef;
+    my $count = MT->model('content_data')->count( \%terms, \%args );
 
     my $max_page = POSIX::ceil( $count / $param_limit_per_page ) if $param_limit_per_page > 0;
 
