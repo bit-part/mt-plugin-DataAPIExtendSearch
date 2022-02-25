@@ -58,7 +58,7 @@ sub data_api_content_data_extend {
     my %params = $app->param_hash;
     foreach my $key ( keys(%params) ) {
         if ( $key =~ /^content_field_/ ) {
-            my ($cf_id_filter) = $key =~ m/^content_field_(\d+)/i;
+            my ($cf_id_filter) = $key =~ m/^content_field_(\d+).*/i;
             my $cf_filter = MT->model('cf')->load(
                 {   blog_id         => $blog_id,
                     content_type_id => $content_type_id,
@@ -68,7 +68,33 @@ sub data_api_content_data_extend {
             if ($cf_filter) {
                 my $data_type = MT->registry('content_field_types')->{ $cf_filter->type }{data_type};
                 my $value;
-                if ( $data_type eq 'text' ) {
+                if ( $data_type eq 'integer' || $data_type eq 'float' ) {
+                    $value = $app->param($key) || undef;
+                    my $join = MT->model('cf_idx')->join_on(
+                        'content_data_id',
+                        {   content_field_id      => $cf_filter->id,
+                            'value_' . $data_type => $value,
+                        },
+                        { alias => 'cf_idx_' . $cf_filter->id }
+                    );
+                    push @{ $args{joins} }, $join;
+                }
+                elsif ( $data_type eq 'datetime' ) {
+                    $value = $app->param($key) || undef;
+                    if ($value) {
+                        my ($year, $month, $date, $hour, $minute, $second) = $value =~ m/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/i;
+                        $value = "$year-$month-$date $hour:$minute:$second";
+                    }
+                    my $join = MT->model('cf_idx')->join_on(
+                        'content_data_id',
+                        {   content_field_id      => $cf_filter->id,
+                            'value_' . $data_type => $value,
+                        },
+                        { alias => 'cf_idx_' . $cf_filter->id }
+                    );
+                    push @{ $args{joins} }, $join;
+                }
+                else {
                     $value = $app->param($key) || '';
                     $value = '%' . $value . '%';
                     my $join = MT->model('cf_idx')->join_on(
