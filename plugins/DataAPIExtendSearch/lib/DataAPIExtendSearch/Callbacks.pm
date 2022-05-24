@@ -204,7 +204,7 @@ sub data_api_pre_load_filtered_list_content_data {
                 });
             }
         }
-        elsif ($key eq 'label') {
+        elsif ($key eq 'label' || $key eq 'label_eq') {
             my $data_label_field_id;
             my $type;
             my $data_label_field_uid = $content_type->data_label;
@@ -220,19 +220,20 @@ sub data_api_pre_load_filtered_list_content_data {
                 $filter->object_ds('content_data.content_data_' . $content_type->id);
             }
             $filter->append_item({
-                'type' => $type ? $type : $key,
+                'type' => $type ? $type : 'label',
                 'args' => {
                     'string' => $params{$key},
-                    'option' => 'contains',
+                    'option' => $key eq 'label_eq' ? 'equal' : 'contains',
                 }
             });
         }
-        elsif ($key eq 'identifier') {
+        elsif ($key eq 'identifier' || $key eq 'identifier_eq') {
+            $filter->object_ds('content_data.content_data_' . $content_type->id);
             $filter->append_item({
-                'type' => $key,
+                'type' => 'identifier',
                 'args' => {
                     'string' => $params{$key},
-                    'option' => 'contains',
+                    'option' => $key eq 'identifier_eq' ? 'equal' : 'contains',
                 }
             });
         }
