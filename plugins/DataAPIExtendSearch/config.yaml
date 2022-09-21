@@ -20,6 +20,10 @@ list_properties:
             label: Basename
         identifier_eq:
             display: none
+    entry:
+        keywords:
+            auto: 1
+            label: Keywords
 applications:
     data_api:
         endpoints:
