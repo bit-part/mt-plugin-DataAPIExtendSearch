@@ -143,3 +143,4 @@ http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/content?identifier=bitpart
 - includeIds: The comma separated ID list of content data to include to result.
 - excludeIds: The comma separated ID list of content data to exclude from result.
 - content_field_[content_field_id]: Filtering the result with a specific content field by the given text (Only support for the text type content field)
+- content_field_[content_field_id]=not_empty: Filtering data that a specific content field is not empty
