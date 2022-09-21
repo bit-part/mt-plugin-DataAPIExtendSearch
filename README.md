@@ -16,6 +16,15 @@ Add filters by Tag, Category and Date to Data API Endpoint of Entries and Conten
 
 ## Filters
 
+### Keywords filter (Only for Entries)
+
+| Parameter | Type   | Description |
+|-----------|--------|-------------|
+| keywords  | string |             |
+
+e.g.)
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?keywords=hello
+
 ### Tag filter (Only for Entries)
 
 | Parameter | Type   | Description |
@@ -23,7 +32,7 @@ Add filters by Tag, Category and Date to Data API Endpoint of Entries and Conten
 | tag       | string |             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?tag=news
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?tag=news
 
 ### Category filter (Only for Entries)
 
@@ -32,7 +41,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?tag=news
 | category  | string |             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?category=technology
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?category=technology
 
 ### Date filter
 
@@ -49,7 +58,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?category=technology
 | to        | string | YYYY-MM-DD                                             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&from=2013-01-01&to=2013-12-31
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&from=2013-01-01&to=2013-12-31
 
 ####  Days
 
@@ -59,7 +68,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | days      | number | N                                                      |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&days=3
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&days=3
 
 ####  Before
 
@@ -69,7 +78,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | before    | string | YYYY-MM-DD                                             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&before=2013-12-31
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&before=2013-12-31
 
 ####  After
 
@@ -79,7 +88,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | after     | string | YYYY-MM-DD                                             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&after=2013-01-01
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&after=2013-01-01
 
 ####  Future
 
@@ -89,7 +98,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | future    | number | '1' only    |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&future=1
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&future=1
 
 ####  Past
 
@@ -99,8 +108,8 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | past      | number | '1' only    |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&past=1  
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_on&past=1
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&past=1  
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?date_type=authored_on&past=1
 
 ### Author Name filter (Only for Entries)
 
@@ -109,7 +118,7 @@ http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?date_type=authored_o
 | author_name | string |             |
 
 e.g.)
-http://your-host/your-mt-api.cgi/v1/sites/{blog_id}/entries?author_name=bitpart
+http://your-host/your-mt-api.cgi/v4/sites/{blog_id}/entries?author_name=bitpart
 
 ### Label filter (Only for Content Data)
 
