@@ -67,9 +67,18 @@ sub data_api_content_data_extend {
             );
             if ($cf_filter) {
                 my $data_type = MT->registry('content_field_types')->{ $cf_filter->type }{data_type};
-                my $value;
-                if ( $data_type eq 'integer' || $data_type eq 'float' ) {
-                    $value = $app->param($key) || undef;
+                my $value = $app->param($key) || undef;
+                if ( $value eq 'not_empty' ) {
+                    my $join = MT->model('cf_idx')->join_on(
+                        'content_data_id',
+                        {   content_field_id      => $cf_filter->id,
+                            'value_' . $data_type => { 'not' => '' },
+                        },
+                        { alias => 'cf_idx_' . $cf_filter->id }
+                    );
+                    push @{ $args{joins} }, $join;
+                }
+                elsif ( $data_type eq 'integer' || $data_type eq 'float' ) {
                     my $join = MT->model('cf_idx')->join_on(
                         'content_data_id',
                         {   content_field_id      => $cf_filter->id,
@@ -80,7 +89,6 @@ sub data_api_content_data_extend {
                     push @{ $args{joins} }, $join;
                 }
                 elsif ( $data_type eq 'datetime' ) {
-                    $value = $app->param($key) || undef;
                     if ($value) {
                         my ($year, $month, $date, $hour, $minute, $second) = $value =~ m/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/i;
                         $value = "$year-$month-$date $hour:$minute:$second";
