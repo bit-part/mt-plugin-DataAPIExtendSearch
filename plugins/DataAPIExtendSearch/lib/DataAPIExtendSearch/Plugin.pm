@@ -90,7 +90,8 @@ sub data_api_content_data_extend {
                 }
                 elsif ( $data_type eq 'datetime' ) {
                     if ($value) {
-                        my ($year, $month, $date, $hour, $minute, $second) = $value =~ m/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/i;
+                        my ( $year, $month, $date, $hour, $minute, $second )
+                            = $value =~ m/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/i;
                         $value = "$year-$month-$date $hour:$minute:$second";
                     }
                     my $join = MT->model('cf_idx')->join_on(
