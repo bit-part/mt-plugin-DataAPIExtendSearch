@@ -88,13 +88,19 @@ sub data_api_pre_load_filtered_list_entry {
             }
         }
     }
-    for my $key (qw(tag category author_name basename keywords)) {
+    for my $key (qw(tag category author_name basename keywords keywords:equal)) {
+        my $condition = 'contains';
+        my $field     = $key;
+        if ( $key =~ /:(.*)$/ ) {
+            $condition = $1;
+            $field =~ s/:.*$//;
+        }
         if (my $value = $app->param($key)) {
             $filter->append_item({
-                'type' => $key,
+                'type' => $field,
                 'args' => {
                     'string' => $value,
-                    'option' => 'contains',
+                    'option' => $condition,
                 }
             });
         }
